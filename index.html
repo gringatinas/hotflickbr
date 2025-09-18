@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Bem-vindo ao HotFlick</title>
+  <meta name="robots" content="noindex,nofollow">
+
+  <style>
+    body {
+      margin:0;
+      height:100vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #000000, #1a0000, #330000, #660000);
+      color:#fff;
+      text-align:center;
+    }
+    h1 {
+      font-size:30px;
+      margin-bottom:12px;
+      font-weight:700;
+    }
+    p {
+      font-size:16px;
+      color:#ddd;
+      margin-bottom:40px;
+    }
+    .progress-container {
+      width:80%;
+      max-width:420px;
+      height:12px;
+      background:rgba(255,255,255,0.15);
+      border-radius:6px;
+      overflow:hidden;
+    }
+    .progress-bar {
+      height:100%;
+      width:0%;
+      background:linear-gradient(90deg, #ff0033, #ff4d4d);
+      animation: load 3s linear forwards;
+    }
+    @keyframes load {
+      from {width:0%;}
+      to {width:100%;}
+    }
+  </style>
+
+  <script>
+    // redireciona após 3 segundos
+    setTimeout(function(){
+      window.location.href = "https://beacons.ai/previashotflickbr";
+    }, 3000);
+  </script>
+</head>
+<body>
+  <h1>Bem-vindo ao HotFlick</h1>
+  <p>Carregando o mundo secreto...</p>
+  <div class="progress-container">
+    <div class="progress-bar"></div>
+  </div>
+</body>
+</html>
