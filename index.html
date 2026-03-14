@@ -5,27 +5,14 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Redirecionando…</title>
 
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-5CTJVBBW');</script>
-<!-- End Google Tag Manager -->
-
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5CTJVBBW"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-  
-  <!-- Não indexar (recomendado para páginas de redirect usadas em ADS) -->
+  <!-- Não indexar -->
   <meta name="robots" content="noindex,nofollow">
 
-  <!-- Referrer policy mais conservadora -->
+  <!-- Referrer policy -->
   <meta name="referrer" content="strict-origin-when-cross-origin">
 
-  <!-- Fallback meta-refresh (1s) -->
-  <meta http-equiv="refresh" content="2;url=https://t.me/flixhubot">
+  <!-- Fallback redirect -->
+  <meta http-equiv="refresh" content="2;url=https://t.me/flixhubot?start">
 
   <style>
     :root{
@@ -35,14 +22,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       --txt:#fff;
       --glass: rgba(255,255,255,0.03);
     }
+
     *{box-sizing:border-box}
+
     html,body{height:100%}
+
     body{
-      <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5CTJVBBW"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-      
       margin:0;
       font-family:Inter, "Segoe UI", Roboto, Arial, sans-serif;
       background: linear-gradient(135deg, #000000 0%, #120014 60%, #2b002f 100%);
@@ -52,6 +37,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       justify-content:center;
       padding:24px;
     }
+
     .card{
       width:100%;
       max-width:720px;
@@ -62,6 +48,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       text-align:center;
       border:1px solid rgba(255,255,255,0.02);
     }
+
     h1{
       margin:0 0 8px;
       font-size:20px;
@@ -70,7 +57,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
     }
-    p{ margin:0 0 18px; color:rgba(255,255,255,0.85); }
+
+    p{
+      margin:0 0 18px;
+      color:rgba(255,255,255,0.85);
+    }
+
     .progress{
       width:80%;
       height:12px;
@@ -79,16 +71,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       border-radius:999px;
       overflow:hidden;
     }
+
     .bar{
       height:100%;
       width:0%;
       background: linear-gradient(90deg,var(--g1),var(--g2));
       animation:fill 2s linear forwards;
     }
-    @keyframes fill{ from{width:0} to{width:100%} }
 
-    .small{ margin-top:14px; font-size:13px; color:rgba(255,255,255,0.7) }
-    a.fallback {
+    @keyframes fill{
+      from{width:0}
+      to{width:100%}
+    }
+
+    .small{
+      margin-top:14px;
+      font-size:13px;
+      color:rgba(255,255,255,0.7)
+    }
+
+    a.fallback{
       color:var(--txt);
       text-decoration:none;
       display:inline-block;
@@ -98,53 +100,49 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       background:linear-gradient(90deg,var(--g1),var(--g2));
       box-shadow:0 8px 28px rgba(75,0,200,0.18);
     }
+
   </style>
 
   <script>
-    // DESTINO: Telegram com parâmetros UTM já codificados
-    const target = "https://t.me/flixhubot";
+    const target = "https://t.me/flixhubot?start";
 
-    // Redireciona em 2000ms; usa replace() pra não deixar essa página no histórico do browser
     setTimeout(function(){
-      try {
+      try{
         window.location.replace(target);
-      } catch(e) {
+      }catch(e){
         window.location.href = target;
       }
-    }, 2000);
+    },2000);
   </script>
+
 </head>
+
 <body>
+
   <div class="card" role="status" aria-live="polite" aria-label="Redirecionando">
     <h1>Redirecionando…</h1>
     <p>Carregando seu acesso — você será levado em instantes para o canal.</p>
 
-    <div class="progress" aria-hidden="true">
-      <div class="bar" aria-hidden="true"></div>
+    <div class="progress">
+      <div class="bar"></div>
     </div>
 
     <div class="small">
-      Se não for redirecionado automaticamente, <a class="fallback" href="https://t.me/flixhubot" target="_blank" rel="noopener noreferrer">clique aqui</a>.
+      Se não for redirecionado automaticamente,
+      <a class="fallback" href="https://t.me/flixhubot?start" target="_blank" rel="noopener noreferrer">
+        clique aqui
+      </a>.
     </div>
   </div>
 
   <noscript>
     <div style="padding:24px;text-align:center;color:#fff;background:#111;border-radius:8px;margin:20px;">
-      JavaScript está desativado — <a href="https://t.me/flixhubot" target="_blank" rel="noopener noreferrer" style="color:#cfa7ff">clique aqui</a> para continuar.
+      JavaScript está desativado —
+      <a href="https://t.me/flixhubot?start" target="_blank" rel="noopener noreferrer" style="color:#cfa7ff">
+        clique aqui
+      </a> para continuar.
     </div>
   </noscript>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
