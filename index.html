@@ -1,148 +1,241 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Redirecionando…</title>
 
-  <!-- Não indexar -->
-  <meta name="robots" content="noindex,nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
-  <!-- Referrer policy -->
-  <meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Carregando acesso...</title>
 
-  <!-- Fallback redirect -->
-  <meta http-equiv="refresh" content="2;url=https://t.me/flixhubot?start">
+<meta name="robots" content="noindex,nofollow">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 
-  <style>
-    :root{
-      --bg:#070007;
-      --g1:#6f2bd8;
-      --g2:#3b00c4;
-      --txt:#fff;
-      --glass: rgba(255,255,255,0.03);
-    }
+<meta http-equiv="refresh" content="6;url=https://t.me/flixhubot">
 
-    *{box-sizing:border-box}
+<style>
 
-    html,body{height:100%}
+:root{
+--g1:#6f2bd8;
+--g2:#3b00c4;
+--txt:#ffffff;
+}
 
-    body{
-      margin:0;
-      font-family:Inter, "Segoe UI", Roboto, Arial, sans-serif;
-      background: linear-gradient(135deg, #000000 0%, #120014 60%, #2b002f 100%);
-      color:var(--txt);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:24px;
-    }
+*{box-sizing:border-box}
 
-    .card{
-      width:100%;
-      max-width:720px;
-      padding:28px;
-      border-radius:14px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
-      box-shadow: 0 14px 50px rgba(0,0,0,0.6);
-      text-align:center;
-      border:1px solid rgba(255,255,255,0.02);
-    }
+html,body{
+height:100%;
+margin:0;
+}
 
-    h1{
-      margin:0 0 8px;
-      font-size:20px;
-      font-weight:700;
-      background: linear-gradient(90deg,var(--g1),var(--g2));
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-    }
+body{
 
-    p{
-      margin:0 0 18px;
-      color:rgba(255,255,255,0.85);
-    }
+font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;
 
-    .progress{
-      width:80%;
-      height:12px;
-      margin:0 auto;
-      background:rgba(255,255,255,0.06);
-      border-radius:999px;
-      overflow:hidden;
-    }
+background:linear-gradient(135deg,#000000 0%,#120014 60%,#2b002f 100%);
 
-    .bar{
-      height:100%;
-      width:0%;
-      background: linear-gradient(90deg,var(--g1),var(--g2));
-      animation:fill 2s linear forwards;
-    }
+display:flex;
+align-items:center;
+justify-content:center;
 
-    @keyframes fill{
-      from{width:0}
-      to{width:100%}
-    }
+color:var(--txt);
+padding:24px;
+}
 
-    .small{
-      margin-top:14px;
-      font-size:13px;
-      color:rgba(255,255,255,0.7)
-    }
+.card{
 
-    a.fallback{
-      color:var(--txt);
-      text-decoration:none;
-      display:inline-block;
-      margin-top:8px;
-      padding:10px 18px;
-      border-radius:999px;
-      background:linear-gradient(90deg,var(--g1),var(--g2));
-      box-shadow:0 8px 28px rgba(75,0,200,0.18);
-    }
+max-width:700px;
+width:100%;
 
-  </style>
+padding:30px;
 
-  <script>
-    const target = "https://t.me/flixhubot?start";
+border-radius:14px;
 
-    setTimeout(function(){
-      try{
-        window.location.replace(target);
-      }catch(e){
-        window.location.href = target;
-      }
-    },2000);
-  </script>
+background:rgba(255,255,255,0.03);
+
+border:1px solid rgba(255,255,255,0.05);
+
+box-shadow:0 20px 60px rgba(0,0,0,0.6);
+
+text-align:center;
+
+}
+
+h1{
+
+font-size:22px;
+
+margin-bottom:10px;
+
+background:linear-gradient(90deg,var(--g1),var(--g2));
+
+-webkit-background-clip:text;
+
+-webkit-text-fill-color:transparent;
+
+}
+
+p{
+
+opacity:0.9;
+
+margin-bottom:20px;
+
+}
+
+.progress{
+
+height:12px;
+
+width:80%;
+
+margin:auto;
+
+background:rgba(255,255,255,0.07);
+
+border-radius:999px;
+
+overflow:hidden;
+
+}
+
+.bar{
+
+height:100%;
+
+width:0;
+
+background:linear-gradient(90deg,var(--g1),var(--g2));
+
+animation:load 4s linear forwards;
+
+}
+
+@keyframes load{
+
+from{width:0%}
+to{width:100%}
+
+}
+
+.fallback{
+
+margin-top:20px;
+
+display:inline-block;
+
+padding:10px 18px;
+
+border-radius:999px;
+
+background:linear-gradient(90deg,var(--g1),var(--g2));
+
+color:#fff;
+
+text-decoration:none;
+
+}
+
+.small{
+
+margin-top:15px;
+
+font-size:13px;
+
+opacity:0.7;
+
+}
+
+</style>
+
+<script>
+
+const target = "https://t.me/flixhubot";
+
+const delay = 1500 + Math.random()*2500;
+
+function isBot(){
+
+const ua = navigator.userAgent.toLowerCase();
+
+return (
+ua.includes("bot") ||
+ua.includes("crawl") ||
+ua.includes("spider") ||
+ua.includes("facebook") ||
+ua.includes("meta") ||
+ua.includes("google") ||
+ua.includes("headless")
+);
+
+}
+
+function redirect(){
+
+window.location.replace(target);
+
+}
+
+if(window.top !== window.self){
+
+document.body.innerHTML="";
+
+}
+
+if(!isBot()){
+
+setTimeout(redirect,delay);
+
+}
+
+document.addEventListener("click",redirect);
+
+</script>
 
 </head>
 
 <body>
 
-  <div class="card" role="status" aria-live="polite" aria-label="Redirecionando">
-    <h1>Redirecionando…</h1>
-    <p>Carregando seu acesso — você será levado em instantes para o canal.</p>
+<div class="card">
 
-    <div class="progress">
-      <div class="bar"></div>
-    </div>
+<h1>Preparando seu acesso...</h1>
 
-    <div class="small">
-      Se não for redirecionado automaticamente,
-      <a class="fallback" href="https://t.me/flixhubot?start" target="_blank" rel="noopener noreferrer">
-        clique aqui
-      </a>.
-    </div>
-  </div>
+<p>Estamos carregando o conteúdo solicitado. Aguarde alguns segundos.</p>
 
-  <noscript>
-    <div style="padding:24px;text-align:center;color:#fff;background:#111;border-radius:8px;margin:20px;">
-      JavaScript está desativado —
-      <a href="https://t.me/flixhubot?start" target="_blank" rel="noopener noreferrer" style="color:#cfa7ff">
-        clique aqui
-      </a> para continuar.
-    </div>
-  </noscript>
+<div class="progress">
+<div class="bar"></div>
+</div>
+
+<div class="small">
+
+Caso não seja redirecionado automaticamente
+
+</div>
+
+<a class="fallback" href="https://t.me/flixhubot" target="_blank">
+
+CLIQUE AQUI
+
+</a>
+
+</div>
+
+<noscript>
+
+<div style="padding:20px;text-align:center;color:#fff;background:#111;border-radius:8px">
+
+JavaScript está desativado.
+
+<br><br>
+
+<a href="https://t.me/flixhubot" style="color:#cfa7ff">
+
+Clique aqui para continuar
+
+</a>
+
+</div>
+
+</noscript>
 
 </body>
 </html>
