@@ -5,12 +5,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>Carregando acesso...</title>
+<title>Acesso ao Conteúdo</title>
 
 <meta name="robots" content="noindex,nofollow">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-
-<meta http-equiv="refresh" content="6;url=https://t.me/flixhubot?start=instagram">
 
 <style>
 
@@ -46,7 +44,7 @@ padding:24px;
 max-width:700px;
 width:100%;
 
-padding:30px;
+padding:35px;
 
 border-radius:14px;
 
@@ -62,9 +60,9 @@ text-align:center;
 
 h1{
 
-font-size:22px;
+font-size:24px;
 
-margin-bottom:10px;
+margin-bottom:12px;
 
 background:linear-gradient(90deg,var(--g1),var(--g2));
 
@@ -78,52 +76,25 @@ p{
 
 opacity:0.9;
 
-margin-bottom:20px;
+margin-bottom:28px;
+
+font-size:16px;
 
 }
 
-.progress{
+.buttons{
 
-height:12px;
-
-width:80%;
-
-margin:auto;
-
-background:rgba(255,255,255,0.07);
-
-border-radius:999px;
-
-overflow:hidden;
+display:flex;
+flex-direction:column;
+gap:15px;
 
 }
 
-.bar{
+.btn{
 
-height:100%;
+display:block;
 
-width:0;
-
-background:linear-gradient(90deg,var(--g1),var(--g2));
-
-animation:load 4s linear forwards;
-
-}
-
-@keyframes load{
-
-from{width:0%}
-to{width:100%}
-
-}
-
-.fallback{
-
-margin-top:20px;
-
-display:inline-block;
-
-padding:10px 18px;
+padding:14px;
 
 border-radius:999px;
 
@@ -133,63 +104,38 @@ color:#fff;
 
 text-decoration:none;
 
+font-weight:600;
+
+transition:0.2s;
+
+}
+
+.btn:hover{
+
+transform:scale(1.03);
+box-shadow:0 10px 35px rgba(100,0,255,0.35);
+
+}
+
+.btn.secondary{
+
+background:rgba(255,255,255,0.08);
+
+border:1px solid rgba(255,255,255,0.15);
+
 }
 
 .small{
 
-margin-top:15px;
+margin-top:18px;
 
 font-size:13px;
 
-opacity:0.7;
+opacity:0.65;
 
 }
 
 </style>
-
-<script>
-
-const target = "https://t.me/flixhubot?start=instagram";
-
-const delay = 1500 + Math.random()*2500;
-
-function isBot(){
-
-const ua = navigator.userAgent.toLowerCase();
-
-return (
-ua.includes("bot") ||
-ua.includes("crawl") ||
-ua.includes("spider") ||
-ua.includes("facebook") ||
-ua.includes("meta") ||
-ua.includes("google") ||
-ua.includes("headless")
-);
-
-}
-
-function redirect(){
-
-window.location.replace(target);
-
-}
-
-if(window.top !== window.self){
-
-document.body.innerHTML="";
-
-}
-
-if(!isBot()){
-
-setTimeout(redirect,delay);
-
-}
-
-document.addEventListener("click",redirect);
-
-</script>
 
 </head>
 
@@ -197,45 +143,39 @@ document.addEventListener("click",redirect);
 
 <div class="card">
 
-<h1>Preparando seu acesso...</h1>
+<h1>Acesso ao Conteúdo</h1>
 
-<p>Estamos carregando o conteúdo solicitado. Aguarde alguns segundos.</p>
+<p>
+Escolha como deseja acessar o conteúdo abaixo.
+</p>
 
-<div class="progress">
-<div class="bar"></div>
+<div class="buttons">
+
+<a class="btn secondary" 
+href="https://t.me/baixarendagratis" 
+target="_blank">
+
+🔎 Ver Prévias
+
+</a>
+
+<a class="btn" 
+href="https://t.me/flixhubot?start=instagram" 
+target="_blank">
+
+🚀 Acessar Bot Direto
+
+</a>
+
 </div>
 
 <div class="small">
 
-Caso não seja redirecionado automaticamente
+Dica: veja as prévias antes de acessar o bot.
 
 </div>
 
-<a class="fallback" href="https://t.me/flixhubot?start=instagram" target="_blank">
-
-CLIQUE AQUI
-
-</a>
-
 </div>
-
-<noscript>
-
-<div style="padding:20px;text-align:center;color:#fff;background:#111;border-radius:8px">
-
-JavaScript está desativado.
-
-<br><br>
-
-<a href="https://t.me/flixhubot?start=instagram" style="color:#cfa7ff">
-
-Clique aqui para continuar
-
-</a>
-
-</div>
-
-</noscript>
 
 </body>
 </html>
