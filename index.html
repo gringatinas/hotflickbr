@@ -3,21 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Acesso VIP</title>
+<title>Pagamento Aprovado</title>
 
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 
-const e1=Date.now().toString();
-
 fbq('init','1548214903316952');
-
-fbq('track','PageView',{},{eventID:e1});
-
-fbq('track','ViewContent',{
-content_name:'VIP Access',
-content_category:'Premium'
-},{eventID:e1});
 
 function g(n){
 let m=document.cookie.match(new RegExp('(^| )'+n+'=([^;]+)'));
@@ -27,10 +18,7 @@ if(m)return m[2];
 const p=new URLSearchParams(window.location.search);
 
 const a=p.get('fbclid');
-const b=p.get('utm_source');
-const c=p.get('utm_campaign');
-const d=p.get('utm_content');
-const e=p.get('utm_term');
+const tx=p.get('tx') || p.get('transaction_id') || Date.now().toString();
 
 if(a){
 
@@ -44,72 +32,54 @@ localStorage.setItem('_fbc',f);
 
 }
 
-const h=g('_fbp');
+const fbp=g('_fbp');
 
-if(h){
-localStorage.setItem('_fbp',h);
+if(fbp){
+localStorage.setItem('_fbp',fbp);
 }
 
-if(b)localStorage.setItem('utm_source',b);
-if(c)localStorage.setItem('utm_campaign',c);
-if(d)localStorage.setItem('utm_content',d);
-if(e)localStorage.setItem('utm_term',e);
+const purchaseKey='purchase_'+tx;
 
-fbq('trackCustom','DeviceData',{
-sw:window.screen.width,
-sh:window.screen.height,
-lg:navigator.language,
-pf:navigator.platform
+if(!localStorage.getItem(purchaseKey)){
+
+localStorage.setItem(purchaseKey,'1');
+
+fbq(
+'track',
+'Purchase',
+{
+value:19.90,
+currency:'BRL',
+content_name:'VIP Access',
+content_type:'product'
+},
+{
+eventID:tx
+}
+);
+
+}
+
+/* MICROEVENTOS */
+
+fbq('track','PageView');
+
+fbq('track','ViewContent',{
+content_name:'Purchase Approved'
 });
 
 setTimeout(()=>{
-fbq('trackCustom','EngagedUser',{t:15});
-},15000);
 
-let s1=false;
+fbq('trackCustom','PurchasePageEngaged');
 
-window.addEventListener('scroll',()=>{
-
-if(!s1&&window.scrollY>120){
-
-s1=true;
-
-fbq('trackCustom','ScrollDepth',{
-d:'50%'
-});
-
-}
-
-});
-
-let i1=false;
-
-document.addEventListener('click',()=>{
-
-if(!i1){
-
-i1=true;
-
-fbq('trackCustom','UserInteraction');
-
-}
-
-});
+},5000);
 
 document.addEventListener('visibilitychange',()=>{
 
 if(document.visibilityState==='hidden'){
-fbq('trackCustom','PageHidden');
+fbq('trackCustom','PurchasePageHidden');
 }
 
-if(document.visibilityState==='visible'){
-fbq('trackCustom','PageVisible');
-}
-
-});
-
-window.addEventListener('beforeunload',()=>{
-fbq('trackCustom','ExitIntent');
 });
 
 function v(){
@@ -124,67 +94,14 @@ function x(){
 
 v();
 
-const e2=Date.now().toString();
-
-fbq(
-'track',
-'Lead',
-{
-cn:'VIP Access',
-ts:localStorage.getItem('utm_source')||'',
-cp:localStorage.getItem('utm_campaign')||'',
-fb:localStorage.getItem('fbclid')||''
-},
-{
-eventID:e2
-}
-);
-
-fbq(
-'track',
-'InitiateCheckout',
-{
-cn:'VIP',
-pf:'tg'
-},
-{
-eventID:e2
-}
-);
-
-fbq(
-'track',
-'AddToCart',
-{
-cn:'VIP Access'
-},
-{
-eventID:e2
-}
-);
-
-fbq('trackCustom','VIPClick',{
-fbc:localStorage.getItem('_fbc')||'',
-fbp:localStorage.getItem('_fbp')||''
-});
+fbq('trackCustom','VIPAccessClick');
 
 }
-
-function u(){
-
-let n=Math.floor(Math.random()*45)+187;
-
-document.getElementById('c').innerText=
-'● '+n+' membros ativos agora';
-
-}
-
-setInterval(u,3000);
 
 </script>
 
 <noscript>
-<img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1548214903316952&ev=PageView&noscript=1"/>
+<img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1548214903316952&ev=Purchase&noscript=1"/>
 </noscript>
 
 <style>
@@ -202,7 +119,7 @@ display:flex;
 align-items:center;
 justify-content:center;
 background:
-radial-gradient(circle at top,#190404,#000);
+radial-gradient(circle at top,#02140a,#000);
 overflow:hidden;
 color:#fff;
 }
@@ -226,38 +143,32 @@ transform:translateY(0);
 }
 }
 
-.b1{
-font-size:12px;
-font-weight:bold;
-color:#ff4d4d;
-margin-bottom:8px;
-letter-spacing:1px;
+.ok{
+width:90px;
+height:90px;
+border-radius:50%;
+background:rgba(34,197,94,.12);
+border:2px solid rgba(34,197,94,.4);
+display:flex;
+align-items:center;
+justify-content:center;
+margin:0 auto 18px auto;
+font-size:42px;
+color:#22c55e;
+box-shadow:0 0 25px rgba(34,197,94,.25);
 }
 
 h1{
-font-size:29px;
+font-size:28px;
 font-weight:900;
-margin-bottom:12px;
-line-height:1.2;
+margin-bottom:10px;
 }
 
 .s1{
 font-size:14px;
-line-height:1.5;
+line-height:1.6;
 color:#cbd5e1;
-margin-bottom:24px;
-}
-
-.vip{
-display:inline-block;
-padding:6px 12px;
-border-radius:999px;
-background:rgba(255,0,80,.15);
-border:1px solid rgba(255,0,80,.35);
-font-size:12px;
-font-weight:bold;
-color:#ff4d8d;
-margin-bottom:16px;
+margin-bottom:26px;
 }
 
 .btn{
@@ -271,10 +182,10 @@ font-size:17px;
 transition:.2s;
 border:none;
 cursor:pointer;
-background:linear-gradient(45deg,#ff0055,#ff4d8d);
+background:linear-gradient(45deg,#22c55e,#16a34a);
 color:#fff;
 animation:p 1.6s infinite;
-box-shadow:0 0 25px rgba(255,0,85,.35);
+box-shadow:0 0 25px rgba(34,197,94,.35);
 }
 
 .btn:hover{
@@ -287,13 +198,13 @@ transform:scale(0.98);
 
 @keyframes p{
 0%{
-box-shadow:0 0 8px rgba(255,0,85,.25);
+box-shadow:0 0 8px rgba(34,197,94,.25);
 }
 50%{
-box-shadow:0 0 28px rgba(255,0,85,.8);
+box-shadow:0 0 28px rgba(34,197,94,.8);
 }
 100%{
-box-shadow:0 0 8px rgba(255,0,85,.25);
+box-shadow:0 0 8px rgba(34,197,94,.25);
 }
 }
 
@@ -308,14 +219,7 @@ margin-top:16px;
 font-size:12px;
 color:#64748b;
 margin-top:8px;
-line-height:1.4;
-}
-
-.line{
-width:100%;
-height:1px;
-background:rgba(255,255,255,.08);
-margin:22px 0;
+line-height:1.5;
 }
 
 </style>
@@ -325,35 +229,33 @@ margin:22px 0;
 
 <div class="w">
 
-<div class="vip">
-ACESSO VIP LIBERADO
+<div class="ok">
+✓
 </div>
 
 <h1>
-Grupo Privado 🔥
+Pagamento aprovado
 </h1>
 
 <div class="s1">
-Conteúdo exclusivo atualizado diariamente.<br>
-Acesso imediato pelo Telegram.
+Seu acesso foi liberado com sucesso.<br>
+Entre agora no grupo VIP exclusivo.
 </div>
-
-<div class="line"></div>
 
 <a
 href="https://t.me/+NIO5V9mzW6swYWYx"
 class="btn"
 onclick="x()"
 >
-ENTRAR NO VIP AGORA
+ENTRAR NO VIP
 </a>
 
-<div class="c1" id="c">
-● 214 membros ativos agora
+<div class="c1">
+● Acesso liberado imediatamente
 </div>
 
 <div class="l1">
-Após entrar, siga as instruções disponíveis no grupo.
+Guarde este acesso. O grupo pode ficar indisponível futuramente.
 </div>
 
 </div>
