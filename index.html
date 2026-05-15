@@ -1,178 +1,359 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acesso VIP</title>
 
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 
-<title>Acesse o Mundo Oculto</title>
+const e1=Date.now().toString();
 
-<meta name="robots" content="noindex,nofollow">
-<meta name="referrer" content="strict-origin-when-cross-origin">
+fbq('init','1548214903316952');
+
+fbq('track','PageView',{},{eventID:e1});
+
+fbq('track','ViewContent',{
+content_name:'VIP Access',
+content_category:'Premium'
+},{eventID:e1});
+
+function g(n){
+let m=document.cookie.match(new RegExp('(^| )'+n+'=([^;]+)'));
+if(m)return m[2];
+}
+
+const p=new URLSearchParams(window.location.search);
+
+const a=p.get('fbclid');
+const b=p.get('utm_source');
+const c=p.get('utm_campaign');
+const d=p.get('utm_content');
+const e=p.get('utm_term');
+
+if(a){
+
+localStorage.setItem('fbclid',a);
+
+const f='fb.1.'+Date.now()+'.'+a;
+
+document.cookie=`_fbc=${f}; path=/; max-age=7776000`;
+
+localStorage.setItem('_fbc',f);
+
+}
+
+const h=g('_fbp');
+
+if(h){
+localStorage.setItem('_fbp',h);
+}
+
+if(b)localStorage.setItem('utm_source',b);
+if(c)localStorage.setItem('utm_campaign',c);
+if(d)localStorage.setItem('utm_content',d);
+if(e)localStorage.setItem('utm_term',e);
+
+fbq('trackCustom','DeviceData',{
+sw:window.screen.width,
+sh:window.screen.height,
+lg:navigator.language,
+pf:navigator.platform
+});
+
+setTimeout(()=>{
+fbq('trackCustom','EngagedUser',{t:15});
+},15000);
+
+let s1=false;
+
+window.addEventListener('scroll',()=>{
+
+if(!s1&&window.scrollY>120){
+
+s1=true;
+
+fbq('trackCustom','ScrollDepth',{
+d:'50%'
+});
+
+}
+
+});
+
+let i1=false;
+
+document.addEventListener('click',()=>{
+
+if(!i1){
+
+i1=true;
+
+fbq('trackCustom','UserInteraction');
+
+}
+
+});
+
+document.addEventListener('visibilitychange',()=>{
+
+if(document.visibilityState==='hidden'){
+fbq('trackCustom','PageHidden');
+}
+
+if(document.visibilityState==='visible'){
+fbq('trackCustom','PageVisible');
+}
+
+});
+
+window.addEventListener('beforeunload',()=>{
+fbq('trackCustom','ExitIntent');
+});
+
+function v(){
+
+if(navigator.vibrate){
+navigator.vibrate(50);
+}
+
+}
+
+function x(){
+
+v();
+
+const e2=Date.now().toString();
+
+fbq(
+'track',
+'Lead',
+{
+cn:'VIP Access',
+ts:localStorage.getItem('utm_source')||'',
+cp:localStorage.getItem('utm_campaign')||'',
+fb:localStorage.getItem('fbclid')||''
+},
+{
+eventID:e2
+}
+);
+
+fbq(
+'track',
+'InitiateCheckout',
+{
+cn:'VIP',
+pf:'tg'
+},
+{
+eventID:e2
+}
+);
+
+fbq(
+'track',
+'AddToCart',
+{
+cn:'VIP Access'
+},
+{
+eventID:e2
+}
+);
+
+fbq('trackCustom','VIPClick',{
+fbc:localStorage.getItem('_fbc')||'',
+fbp:localStorage.getItem('_fbp')||''
+});
+
+}
+
+function u(){
+
+let n=Math.floor(Math.random()*45)+187;
+
+document.getElementById('c').innerText=
+'● '+n+' membros ativos agora';
+
+}
+
+setInterval(u,3000);
+
+</script>
+
+<noscript>
+<img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1548214903316952&ev=PageView&noscript=1"/>
+</noscript>
 
 <style>
 
-:root{
---g1:#6f2bd8;
---g2:#3b00c4;
---txt:#ffffff;
-}
-
-*{box-sizing:border-box}
-
-html,body{
-height:100%;
+*{
 margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
 }
 
 body{
-
-font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;
-
-background:linear-gradient(135deg,#000000 0%,#120014 60%,#2b002f 100%);
-
+height:100vh;
 display:flex;
 align-items:center;
 justify-content:center;
-
-color:var(--txt);
-padding:24px;
+background:
+radial-gradient(circle at top,#190404,#000);
+overflow:hidden;
+color:#fff;
 }
 
-.card{
-
-max-width:700px;
+.w{
 width:100%;
-
-padding:35px;
-
-border-radius:14px;
-
-background:rgba(255,255,255,0.03);
-
-border:1px solid rgba(255,255,255,0.05);
-
-box-shadow:0 20px 60px rgba(0,0,0,0.6);
-
+max-width:420px;
+padding:28px;
 text-align:center;
+animation:f .5s ease;
+}
 
+@keyframes f{
+from{
+opacity:0;
+transform:translateY(15px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+.b1{
+font-size:12px;
+font-weight:bold;
+color:#ff4d4d;
+margin-bottom:8px;
+letter-spacing:1px;
 }
 
 h1{
-
-font-size:24px;
-
+font-size:29px;
+font-weight:900;
 margin-bottom:12px;
-
-background:linear-gradient(90deg,var(--g1),var(--g2));
-
--webkit-background-clip:text;
-
--webkit-text-fill-color:transparent;
-
+line-height:1.2;
 }
 
-p{
-
-opacity:0.9;
-
-margin-bottom:28px;
-
-font-size:16px;
-
+.s1{
+font-size:14px;
+line-height:1.5;
+color:#cbd5e1;
+margin-bottom:24px;
 }
 
-.buttons{
-
-display:flex;
-flex-direction:column;
-gap:15px;
-
+.vip{
+display:inline-block;
+padding:6px 12px;
+border-radius:999px;
+background:rgba(255,0,80,.15);
+border:1px solid rgba(255,0,80,.35);
+font-size:12px;
+font-weight:bold;
+color:#ff4d8d;
+margin-bottom:16px;
 }
 
 .btn{
-
 display:block;
-
-padding:14px;
-
-border-radius:999px;
-
-background:linear-gradient(90deg,var(--g1),var(--g2));
-
-color:#fff;
-
+width:100%;
+padding:18px;
+border-radius:16px;
 text-decoration:none;
-
-font-weight:600;
-
-transition:0.2s;
-
+font-weight:900;
+font-size:17px;
+transition:.2s;
+border:none;
+cursor:pointer;
+background:linear-gradient(45deg,#ff0055,#ff4d8d);
+color:#fff;
+animation:p 1.6s infinite;
+box-shadow:0 0 25px rgba(255,0,85,.35);
 }
 
 .btn:hover{
-
-transform:scale(1.03);
-box-shadow:0 10px 35px rgba(100,0,255,0.35);
-
+transform:translateY(-2px);
 }
 
-.btn.secondary{
-
-background:rgba(255,255,255,0.08);
-
-border:1px solid rgba(255,255,255,0.15);
-
+.btn:active{
+transform:scale(0.98);
 }
 
-.small{
+@keyframes p{
+0%{
+box-shadow:0 0 8px rgba(255,0,85,.25);
+}
+50%{
+box-shadow:0 0 28px rgba(255,0,85,.8);
+}
+100%{
+box-shadow:0 0 8px rgba(255,0,85,.25);
+}
+}
 
-margin-top:18px;
-
+.c1{
 font-size:13px;
+font-weight:bold;
+color:#22c55e;
+margin-top:16px;
+}
 
-opacity:0.65;
+.l1{
+font-size:12px;
+color:#64748b;
+margin-top:8px;
+line-height:1.4;
+}
 
+.line{
+width:100%;
+height:1px;
+background:rgba(255,255,255,.08);
+margin:22px 0;
 }
 
 </style>
-
 </head>
 
 <body>
 
-<div class="card">
+<div class="w">
 
-<h1>Acesso Exclusivo</h1>
-
-<p>
-Escolha como deseja acessar o conteúdo abaixo!
-</p>
-
-<div class="buttons">
-
-<a class="btn secondary" 
-href="https://t.me/baixarendagratis" 
-target="_blank">
-
-👀 Ver Prévias
-
-</a>
-
-<a class="btn" 
-href="https://t.me/flixhubot?start=instagram" 
-target="_blank">
-
-🔞 Acessar VIP Premium
-
-</a>
-
+<div class="vip">
+ACESSO VIP LIBERADO
 </div>
 
-<div class="small">
+<h1>
+Grupo Privado 🔥
+</h1>
 
-Dica: veja as prévias antes de acessar o VIP.
+<div class="s1">
+Conteúdo exclusivo atualizado diariamente.<br>
+Acesso imediato pelo Telegram.
+</div>
 
+<div class="line"></div>
+
+<a
+href="https://t.me/+NIO5V9mzW6swYWYx"
+class="btn"
+onclick="x()"
+>
+ENTRAR NO VIP AGORA
+</a>
+
+<div class="c1" id="c">
+● 214 membros ativos agora
+</div>
+
+<div class="l1">
+Após entrar, siga as instruções disponíveis no grupo.
 </div>
 
 </div>
